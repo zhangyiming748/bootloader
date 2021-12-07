@@ -19,7 +19,7 @@ func Command(code string) {
 	defer func() {
 		if err := recover(); err != nil {
 			//恢复错误
-			fmt.Printf("有错误产生%v", err)
+			fmt.Printf("fastboot命令执行有错误产生,比如解锁码错误%v\n", err)
 		}
 	}()
 	stdout, err1 := cmd.StdoutPipe()
