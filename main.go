@@ -5,6 +5,7 @@ import (
 	"bootloader/Generat_dict"
 	"bootloader/useDict"
 	"fmt"
+	"github.com/zhangyiming748/calendar"
 )
 
 func init() {
@@ -13,6 +14,7 @@ func init() {
 		Generat_dict.Generate()
 		//Generat_dict.WritePasswd(passwd)
 	}
+	calendar.SubDay()
 }
 
 func main() {
