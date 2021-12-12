@@ -4,69 +4,63 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func Generate() {
-	var (
-		i uint64
-	)
-	for i = 0; i < 1000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第一段")
+	for a := 0; a < 10; a++ { //1
+		sa:=strconv.Itoa(a)
+		for b := 0; b < 10; b++ { //2
+			sb:=strconv.Itoa(b)
+			for c := 0; c < 10; c++ { //3
+				sc:=strconv.Itoa(c)
+				for d := 0; d < 10; d++ { //4
+					sd:=strconv.Itoa(d)
+					for e := 0; e < 10; e++ { //5
+						se:=strconv.Itoa(e)
+						for f := 0; f < 10; f++ { //6
+							sf:=strconv.Itoa(f)
+							for g := 0; g < 10; g++ { //7
+								sg:=strconv.Itoa(g)
+								for h := 0; h < 10; h++ { //8
+									sh:=strconv.Itoa(h)
+									for i := 0; i < 10; i++ { //9
+										si:=strconv.Itoa(i)
+										for j := 0; j < 10; j++ { //10
+											sj:=strconv.Itoa(j)
+											for k:=0;k<10;k++{//11
+												sk:=strconv.Itoa(k)
+												for l:=0;l<10;l++{//12
+													sl:=strconv.Itoa(l)
+													for m:=0;m<10;m++{//13
+														sm:=strconv.Itoa(m)
+														for n:=0;n<10;n++{//14
+															sn:=strconv.Itoa(n)
+															for o:=0;o<10;o++{//15
+																so:=strconv.Itoa(o)
+																for p:=0;p<10;p++{//16
+																	sp:=strconv.Itoa(p)
+																	ret:=strings.Join([]string{sa,sb,sc,sd,se,sf,sg,sh,si,sj,sk,sl,sm,sn,so,sp},"")
+																	fmt.Printf("生成的数字是%s\n",ret)
+																	WritePasswd(ret)
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 
-	for i = 1000000000000000; i < 2000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-
+			}
+		}
 	}
-	fmt.Println("写入第二段")
-
-	for i = 2000000000000000; i < 3000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第三段")
-	for i = 3000000000000000; i < 4000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	for i = 4000000000000000; i < 5000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第五段")
-
-	for i = 5000000000000000; i < 6000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第六段")
-	for i = 6000000000000000; i < 7000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第七段")
-
-	for i = 7000000000000000; i < 8000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第八段")
-
-	for i = 8000000000000000; i < 9000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第九段")
-
-	for i = 9000000000000000; i < 1000000000000000; i++ {
-		a := fmt.Sprintf("%016d", i)
-		WritePasswd(a)
-	}
-	fmt.Println("写入第十段")
-
 }
 
 func CheckFileIsExist(filename string) bool {
