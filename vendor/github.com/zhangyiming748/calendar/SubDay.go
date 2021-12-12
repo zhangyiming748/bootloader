@@ -2,6 +2,7 @@ package calendar
 
 import (
 	"fmt"
+	"github.com/nosixtools/solarlunar"
 	"strconv"
 	"strings"
 	"time"
@@ -27,11 +28,31 @@ const (
 	ChristmasEve             = "12-24" //平安夜
 	Christmas                = "12-25" //圣诞节
 )
+const (
+	ChineseNewYear      = "01-01" //春节
+	LanternFestival     = "01-15" //元宵节
+	ChingMingFestival   = "03-05" //清明节
+	MothersDay          = "04-08" //母亲节
+	DragonBoatFestival  = "05-05" //端午节
+	SingleDogDay        = "07-07" //七夕节
+	MidyearFestival     = "07-15" //中元节
+	MidAutumnFestival   = "08-15" //中秋节
+	DoubleNinthFestival = "09-09" // 重阳节
+	LabaFestival        = "12-08" //腊八节
+
+)
 
 //获取当前年份
 func thisYear() string {
 	ret := fmt.Sprint(time.Now().Format("2006"))
 	return ret
+}
+func nextYear() string {
+	this := thisYear()
+	i, _ := strconv.Atoi(this)
+	i += 1
+	s := strconv.Itoa(i)
+	return s
 }
 func SubDay() {
 	fmt.Println("早上好,摸鱼人!")
@@ -47,6 +68,11 @@ func SubDay() {
 		fmt.Println("最后,祝愿天下所有摸鱼人,都能愉快的渡过每一天")
 	}()
 	defer nextNewYear()
+	lunar()
+	solar()
+
+}
+func solar() {
 	subValentinesDay()
 	subWomensDay()
 	subArborDay()
@@ -63,6 +89,18 @@ func SubDay() {
 	subNationalMemorialDay()
 	subChristmasEve()
 	subChristmas()
+}
+func lunar() {
+	chineseNewYear()
+	chineseLanternFestival()
+	chineseChingMingFestival()
+	chineseMothersDay()
+	chineseDragonBoatFestival()
+	chineseSingleDogDay()
+	chineseMidyearFestival()
+	chineseMidAutumnFestival()
+	chineseDoubleNinthFestival()
+	chineseLabaFestival()
 }
 
 //情人节
@@ -265,4 +303,145 @@ func nextNewYear() {
 		fmt.Println("过几天又会有人发\"新的一年,新的自己\"这种自欺欺人的话")
 
 	}
+}
+
+//func Lunar() {
+//	solarDate := "2022-01-01"
+//	fmt.Println(solarlunar.SolarToChineseLuanr(solarDate))
+//	fmt.Println(solarlunar.SolarToSimpleLuanr(solarDate))
+//
+//	lunarDate := "2022-01-01"
+//	fmt.Println(solarlunar.LunarToSolar(lunarDate, false))
+//}
+//春节
+func chineseNewYear() {
+	y := nextYear()
+	CHY := strings.Join([]string{y, ChineseNewYear}, "-") //农历新年
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离明年春节还有%v天\n", int(unsub.Hours())/24)
+	if int(unsub.Hours())/24 < 7 {
+		fmt.Println("新的一年就要到了,谢谢大家长久以来对我的忽视,我很喜欢这种状态,大家都各忙各的,没人鸟我,我也不想鸟你们,新的一年希望大家继续加油,我会一直和你们耗下去")
+	}
+}
+
+//元宵节
+func chineseLanternFestival() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, LanternFestival}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离元宵节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//清明节
+func chineseChingMingFestival() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, ChingMingFestival}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离清明节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//母亲节
+func chineseMothersDay() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, MothersDay}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离母亲节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//端午节
+func chineseDragonBoatFestival() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, DragonBoatFestival}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离端午节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//七夕节
+func chineseSingleDogDay() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, SingleDogDay}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离七夕节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//中元节
+func chineseMidyearFestival() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, MidyearFestival}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离中元节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//中秋节
+func chineseMidAutumnFestival() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, MidAutumnFestival}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离中秋节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//重阳节
+func chineseDoubleNinthFestival() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, DoubleNinthFestival}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离重阳节还有%v天\n", int(unsub.Hours())/24)
+}
+
+//腊八节
+func chineseLabaFestival() {
+	y := thisYear()
+	CHY := strings.Join([]string{y, LabaFestival}, "-")
+	convert := solarlunar.LunarToSolar(CHY, false)
+	ret, _ := time.Parse("2006-01-02", convert)
+	unsub := ret.Sub(time.Now())
+	if unsub < 0 {
+		return
+	}
+	fmt.Printf("距离腊八节还有%v天\n", int(unsub.Hours())/24)
 }
