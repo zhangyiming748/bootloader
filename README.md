@@ -35,6 +35,7 @@ t.me/testAnything
 或者邮箱
 
 <ul>
-        <li><a href="mailto:zhangyiming748@gmail.com">Gmail</a></li>
-        <li><a href="mailto:578779391@qq.com">QQmail</a></li>
+    <li><a href="mailto:zhangyiming748@gmail.com">Gmail</a></li>
+    <li><a href="mailto:zhangyiming748@protonmail.com">ProtonMail</a></li>
+    <li><a href="mailto:zhangyiming748@outlook.com">Outlook</a></li>
 </ul>
