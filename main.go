@@ -1,26 +1,25 @@
 package main
 
 import (
-	"bootloader/Execute"
-	"bootloader/Generat_dict"
-	"bootloader/useDict"
+	"bootloader/Generate"
 	"fmt"
-	"github.com/zhangyiming748/calendar"
-
+	"sync"
 )
 
-func init() {
-	if !Generat_dict.CheckFileIsExist("passwd.dict") {
-		fmt.Println("文件不存在,重新生成字典")
-		Generat_dict.Generate()
-		//Generat_dict.WritePasswd(passwd)
-	}
-	calendar.SubDay()
-}
+
 
 func main() {
-	codes := useDict.UseDict("passwd.dict")
-	for _, v := range codes {
-		Execute.Command(v)
+	ch:=make(chan string)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go Generate.Generate(ch,&wg)
+	for v:=range ch{
+		fmt.Println(v)
 	}
+	wg.Wait()
+
+	//codes := useDict.UseDict("passwd.dict")
+	//for _, v := range codes {
+	//	Execute.Command(v)
+	//}
 }

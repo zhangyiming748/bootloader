@@ -1,14 +1,13 @@
-package Generat_dict
+package Generate
 
 import (
-	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 )
 
-func Generate() {
+func Generate(ch chan string,wg *sync.WaitGroup) {
 	for a := 0; a < 10; a++ { //1
 		sa:=strconv.Itoa(a)
 		for b := 0; b < 10; b++ { //2
@@ -42,8 +41,8 @@ func Generate() {
 																for p:=0;p<10;p++{//16
 																	sp:=strconv.Itoa(p)
 																	ret:=strings.Join([]string{sa,sb,sc,sd,se,sf,sg,sh,si,sj,sk,sl,sm,sn,so,sp},"")
-																	fmt.Printf("生成的数字是%s\n",ret)
-																	WritePasswd(ret)
+																	//fmt.Printf("生成的数字是%s\n",ret)
+																	ch<-ret
 																}
 															}
 														}
@@ -61,6 +60,7 @@ func Generate() {
 			}
 		}
 	}
+	wg.Done()
 }
 
 func CheckFileIsExist(filename string) bool {
@@ -68,24 +68,4 @@ func CheckFileIsExist(filename string) bool {
 		return false
 	}
 	return true
-}
-func WritePasswd(num string) {
-	filePath := "passwd.dict"
-	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0777)
-	if err != nil {
-		fmt.Println("文件打开失败", err)
-	}
-	//及时关闭file句柄
-	defer file.Close()
-	//写入文件时，使用带缓存的 *Writer
-	write := bufio.NewWriter(file)
-	write.WriteString(num)
-	write.WriteString("\n")
-	write.Flush()
-	//for _, v := range nums {
-	//	write.WriteString(v)
-	//	write.WriteString("\n")
-	//	write.Flush()
-	//}
-	fmt.Printf("条目%v构建完成\n", num)
 }

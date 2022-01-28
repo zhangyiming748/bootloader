@@ -1,4 +1,4 @@
-package Generat_dict
+package Generate
 
 import (
 	"github.com/zhangyiming748/calendar"
